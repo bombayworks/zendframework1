@@ -16,7 +16,7 @@
  * @package    Zend_Cache
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Core.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Core.php 24807 2012-05-15 12:10:42Z adamlundrigan $
  */
 
 
@@ -211,7 +211,7 @@ class Zend_Cache_Core
     public function setOption($name, $value)
     {
         if (!is_string($name)) {
-            Zend_Cache::throwException("Incorrect option name : $name");
+            Zend_Cache::throwException("Incorrect option name!");
         }
         $name = strtolower($name);
         if (array_key_exists($name, $this->_options)) {

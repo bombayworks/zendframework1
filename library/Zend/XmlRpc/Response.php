@@ -37,7 +37,7 @@
  * @package  Zend_XmlRpc
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version $Id: Response.php 25032 2012-08-17 19:45:06Z matthew $
+ * @version $Id: Response.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_XmlRpc_Response
 {
@@ -176,27 +176,11 @@ class Zend_XmlRpc_Response
             return false;
         }
 
-        // @see ZF-12293 - disable external entities for security purposes
-        $loadEntities         = libxml_disable_entity_loader(true);
-        $useInternalXmlErrors = libxml_use_internal_errors(true);
         try {
-            $dom = new DOMDocument;
-            $dom->loadXML($response);
-            foreach ($dom->childNodes as $child) {
-                if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
-                    // require_once 'Zend/XmlRpc/Exception.php';
-                    throw new Zend_XmlRpc_Exception(
-                        'Invalid XML: Detected use of illegal DOCTYPE'
-                    );
-                }
-            }
-            // TODO: Locate why this passes tests but a simplexml import doesn't
-            // $xml = simplexml_import_dom($dom);
+            $useInternalXmlErrors = libxml_use_internal_errors(true);
             $xml = new SimpleXMLElement($response);
-            libxml_disable_entity_loader($loadEntities);
             libxml_use_internal_errors($useInternalXmlErrors);
         } catch (Exception $e) {
-            libxml_disable_entity_loader($loadEntities);
             libxml_use_internal_errors($useInternalXmlErrors);
             // Not valid XML
             $this->_fault = new Zend_XmlRpc_Fault(651);
@@ -221,7 +205,6 @@ class Zend_XmlRpc_Response
 
         try {
             if (!isset($xml->params) || !isset($xml->params->param) || !isset($xml->params->param->value)) {
-                // require_once 'Zend/XmlRpc/Value/Exception.php';
                 throw new Zend_XmlRpc_Value_Exception('Missing XML-RPC value in XML');
             }
             $valueXml = $xml->params->param->value->asXML();

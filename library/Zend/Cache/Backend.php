@@ -17,7 +17,7 @@
  * @subpackage Zend_Cache_Backend
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Backend.php 24600 2012-01-08 15:58:57Z mabe $
+ * @version    $Id: Backend.php 24599 2012-01-08 15:55:25Z mabe $
  */
 
 

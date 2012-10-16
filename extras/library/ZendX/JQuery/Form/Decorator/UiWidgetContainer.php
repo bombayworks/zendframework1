@@ -17,7 +17,7 @@
  * @subpackage  View
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
- * @version     $Id: UiWidgetContainer.php 20745 2010-01-29 10:34:00Z beberlei $
+ * @version     $Id: UiWidgetContainer.php 24955 2012-06-13 20:36:50Z rob $
  */
 
 require_once "Zend/Form/Decorator/Abstract.php";
@@ -127,12 +127,23 @@ abstract class ZendX_JQuery_Form_Decorator_UiWidgetContainer extends Zend_Form_D
             return $content;
         }
 
+        $placement = $this->getPlacement();
+        $separator = $this->getSeparator();
+
         $jQueryParams = $this->getJQueryParams();
-        $attribs     = $this->getOptions();
+        $attribs      = $this->getOptions();
 
         $helper      = $this->getHelper();
         $id          = $element->getId() . '-container';
 
-        return $view->$helper($id, $jQueryParams, $attribs);
+        $tabs = $view->$helper($id, $jQueryParams, $attribs);
+
+        switch ($placement) {
+            case self::PREPEND:
+                return $tabs . $separator . $content;
+
+            case self::APPEND:
+                return $content . $separator . $tabs;
+        }
     }
 }

@@ -43,7 +43,7 @@
  * @package  Zend_XmlRpc
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version $Id: Request.php 25032 2012-08-17 19:45:06Z matthew $
+ * @version $Id: Request.php 24593 2012-01-05 20:35:02Z matthew $
  */
 class Zend_XmlRpc_Request
 {
@@ -303,26 +303,12 @@ class Zend_XmlRpc_Request
             return false;
         }
 
-        // @see ZF-12293 - disable external entities for security purposes
-        $loadEntities = libxml_disable_entity_loader(true);
         try {
-            $dom = new DOMDocument;
-            $dom->loadXML($request);
-            foreach ($dom->childNodes as $child) {
-                if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
-                    // require_once 'Zend/XmlRpc/Exception.php';
-                    throw new Zend_XmlRpc_Exception(
-                        'Invalid XML: Detected use of illegal DOCTYPE'
-                    );
-                }
-            }
-            $xml = simplexml_import_dom($dom);
-            libxml_disable_entity_loader($loadEntities);
+            $xml = new SimpleXMLElement($request);
         } catch (Exception $e) {
             // Not valid XML
             $this->_fault = new Zend_XmlRpc_Fault(631);
             $this->_fault->setEncoding($this->getEncoding());
-            libxml_disable_entity_loader($loadEntities);
             return false;
         }
 

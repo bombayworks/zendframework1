@@ -16,7 +16,7 @@
  * @package    Zend_Feed_Writer
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Deleted.php 25045 2012-08-24 21:34:49Z matthew $
+ * @version    $Id: Deleted.php 24710 2012-04-16 18:55:12Z bittarman $
  */
 
 // require_once 'Zend/Feed/Writer/Feed/FeedAbstract.php';

@@ -17,7 +17,7 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Redirect.php 24594 2012-01-05 21:27:01Z matthew $
+ * @version    $Id: Redirect.php 24851 2012-05-31 19:37:46Z rob $
  */
 
 /** @see PHPUnit_Framework_Constraint */
@@ -64,6 +64,11 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
      * @var string
      */
     protected $_match             = null;
+    
+    /**
+     * What is actual redirect
+     */
+    protected $_actual            = null;
 
     /**
      * Whether or not assertion is negated
@@ -142,6 +147,10 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
                     : $this->_regex($response, $match);
             case self::ASSERT_REDIRECT:
             default:
+                $headers  = $response->sendHeaders();
+                $redirect = $headers['location'];
+                $redirect = str_replace('Location: ', '', $redirect);
+                $this->_actual = $redirect;
                 return ($this->_negate) ? !$response->isRedirect() : $response->isRedirect();
         }
     }
@@ -166,6 +175,9 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
                     $failure = 'Failed asserting response DOES NOT redirect to "%s"';
                 }
                 $failure = sprintf($failure, $this->_match);
+                if (!$this->_negate && $this->_actual) {
+                    $failure .= sprintf(PHP_EOL . 'It redirects to "%s".', $this->_actual);
+                }
                 break;
             case self::ASSERT_REDIRECT_REGEX:
                 $failure = 'Failed asserting response redirects to URL MATCHING "%s"';
@@ -173,12 +185,18 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
                     $failure = 'Failed asserting response DOES NOT redirect to URL MATCHING "%s"';
                 }
                 $failure = sprintf($failure, $this->_match);
+                if ($this->_actual) {
+                    $failure .= sprintf(PHP_EOL . 'It redirects to "%s".', $this->_actual);
+                }
                 break;
             case self::ASSERT_REDIRECT:
             default:
                 $failure = 'Failed asserting response is a redirect';
                 if ($this->_negate) {
                     $failure = 'Failed asserting response is NOT a redirect';
+                    if ($this->_actual) {
+                        $failure .= sprintf(PHP_EOL . 'It redirects to "%s"', $this->_actual);
+                    }
                 }
                 break;
         }
@@ -216,6 +234,7 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
         $headers  = $response->sendHeaders();
         $redirect = $headers['location'];
         $redirect = str_replace('Location: ', '', $redirect);
+        $this->_actual = $redirect;
 
         return ($redirect == $match);
     }
@@ -236,6 +255,7 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
         $headers  = $response->sendHeaders();
         $redirect = $headers['location'];
         $redirect = str_replace('Location: ', '', $redirect);
+        $this->_actual = $redirect;
 
         return ($redirect != $match);
     }
@@ -256,6 +276,7 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
         $headers  = $response->sendHeaders();
         $redirect = $headers['location'];
         $redirect = str_replace('Location: ', '', $redirect);
+        $this->_actual = $redirect;
 
         return preg_match($pattern, $redirect);
     }
@@ -276,6 +297,7 @@ class Zend_Test_PHPUnit_Constraint_Redirect extends PHPUnit_Framework_Constraint
         $headers  = $response->sendHeaders();
         $redirect = $headers['location'];
         $redirect = str_replace('Location: ', '', $redirect);
+        $this->_actual = $redirect;
 
         return !preg_match($pattern, $redirect);
     }

@@ -16,7 +16,7 @@
  * @package    Zend_Dom
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Query.php 25032 2012-08-17 19:45:06Z matthew $
+ * @version    $Id: Query.php 24830 2012-05-30 12:40:05Z adamlundrigan $
  */
 
 /**
@@ -124,6 +124,10 @@ class Zend_Dom_Query
         }
         // breaking XML declaration to make syntax highlighting work
         if ('<' . '?xml' == substr(trim($document), 0, 5)) {
+            if (preg_match('/<html[^>]*xmlns="([^"]+)"[^>]*>/i', $document, $matches)) {
+                $this->_xpathNamespaces[] = $matches[1];
+                return $this->setDocumentXhtml($document, $encoding);
+            }
             return $this->setDocumentXml($document, $encoding);
         }
         if (strstr($document, 'DTD XHTML')) {
@@ -241,7 +245,6 @@ class Zend_Dom_Query
 
         $encoding = $this->getEncoding();
         libxml_use_internal_errors(true);
-        libxml_disable_entity_loader(true);
         if (null === $encoding) {
             $domDoc = new DOMDocument('1.0');
         } else {
@@ -251,14 +254,6 @@ class Zend_Dom_Query
         switch ($type) {
             case self::DOC_XML:
                 $success = $domDoc->loadXML($document);
-                foreach ($domDoc->childNodes as $child) {
-                    if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
-                        // require_once 'Zend/Dom/Exception.php';
-                        throw new Zend_Dom_Exception(
-                            'Invalid XML: Detected use of illegal DOCTYPE'
-                        );
-                    }
-                }
                 break;
             case self::DOC_HTML:
             case self::DOC_XHTML:
@@ -271,7 +266,6 @@ class Zend_Dom_Query
             $this->_documentErrors = $errors;
             libxml_clear_errors();
         }
-        libxml_disable_entity_loader(false);
         libxml_use_internal_errors(false);
 
         if (!$success) {
