@@ -17,7 +17,7 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Menu.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Menu.php 24455 2011-09-11 12:51:54Z padraic $
  */
 
 /**
@@ -234,6 +234,7 @@ class Zend_View_Helper_Navigation_Menu
             $element = 'a';
             $attribs['href'] = $href;
             $attribs['target'] = $page->getTarget();
+            $attribs['accesskey'] = $page->getAccessKey();
         } else {
             $element = 'span';
         }

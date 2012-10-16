@@ -16,7 +16,7 @@
  * @category   Zend
  * @package    Zend_Http
  * @subpackage Client_Adapter
- * @version    $Id: Curl.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Curl.php 24272 2011-07-27 21:12:08Z mcleod@spaceweb.nl $
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

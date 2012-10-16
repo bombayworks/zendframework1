@@ -17,7 +17,7 @@
  * @subpackage Page
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Uri.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Uri.php 24455 2011-09-11 12:51:54Z padraic $
  */
 
 /**
@@ -79,7 +79,18 @@ class Zend_Navigation_Page_Uri extends Zend_Navigation_Page
      */
     public function getHref()
     {
-        return $this->getUri();
+        $uri = $this->getUri();
+        
+        $fragment = $this->getFragment();       
+        if (null !== $fragment) {
+            if ('#' == substr($uri, -1)) {
+                return $uri . $fragment;
+            } else {                
+                return $uri . '#' . $fragment;
+            }
+        }
+        
+        return $uri;
     }
 
     // Public methods:

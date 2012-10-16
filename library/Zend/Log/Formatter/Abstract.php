@@ -17,7 +17,7 @@
  * @subpackage Formatter
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Abstract.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Abstract.php 23775 2011-03-01 17:25:24Z ralph $
  */
 
 /** @see Zend_Log_Formatter_Interface */
@@ -32,7 +32,7 @@
  * @subpackage Formatter
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Abstract.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Abstract.php 23775 2011-03-01 17:25:24Z ralph $
  */
 abstract class Zend_Log_Formatter_Abstract
     implements Zend_Log_Formatter_Interface, Zend_Log_FactoryInterface

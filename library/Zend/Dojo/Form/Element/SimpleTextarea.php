@@ -31,7 +31,7 @@
  * @subpackage Form_Element
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: SimpleTextarea.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: SimpleTextarea.php 23775 2011-03-01 17:25:24Z ralph $
  */
 class Zend_Dojo_Form_Element_SimpleTextarea extends Zend_Dojo_Form_Element_Dijit
 {

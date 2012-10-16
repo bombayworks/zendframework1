@@ -16,7 +16,7 @@
  * @package    Zend_View
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id: Form.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Form.php 24478 2011-09-26 19:52:58Z adamlundrigan $
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -73,9 +73,10 @@ class Zend_View_Helper_Form extends Zend_View_Helper_FormElement
                . '>';
 
         if (false !== $content) {
-            $xhtml .= $content
-                   .  '</form>';
+            $xhtml .= $content;
         }
+
+        $xhtml .= '</form>';
 
         return $xhtml;
     }

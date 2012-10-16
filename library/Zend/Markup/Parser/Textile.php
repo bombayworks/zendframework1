@@ -17,7 +17,7 @@
  * @subpackage Parser
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Textile.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Textile.php 24266 2011-07-24 14:37:43Z ramon $
  */
 
 /**

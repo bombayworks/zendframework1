@@ -17,7 +17,7 @@
  * @subpackage Zend_Cache_Backend
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Sqlite.php 24449 2011-09-05 15:23:32Z matthew $
+ * @version    $Id: Sqlite.php 24348 2011-08-04 17:51:24Z mabe $
  */
 
 
@@ -530,7 +530,6 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
             $rand = rand(1, $this->_options['automatic_vacuum_factor']);
             if ($rand == 1) {
                 $this->_query('VACUUM');
-                @sqlite_close($this->_getConnection());
             }
         }
     }
