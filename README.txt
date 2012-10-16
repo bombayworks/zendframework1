@@ -2,8 +2,37 @@ Welcome to the Zend Framework 1.11 Release!
 
 RELEASE INFORMATION
 ---------------
-Zend Framework 1.11.12 Release ([INSERT REV NUM HERE]).
+Zend Framework 1.11.13 Release ([INSERT REV NUM HERE]).
 Released on <Month> <Day>, <Year>.
+
+SECURITY NOTICE FOR 1.11.13
+---------------------------
+
+Several components were found to contain additional XML eXternal Entity
+(XXE) injection vulnerabilities (in addition to the XML-RPC component
+patched in 1.11.12). Additionally, we identified several potential XML
+Entity Expansion (XEE) vectors. XEE attacks occur when the XML doctype
+declaration contains XML entity definitions; these attacks usually result
+in recursion, which consumes CPU and memory resources, making Denial of
+Service (DoS) attacks easier to implement.
+
+The patches in 1.11.13 close both XXE and XEE vulnerabilities found in
+the framework. The former are mitigated by ensuring
+libxml_disable_entity_loader is called before any SimpleXML calls are
+executed; the latter are mitigated by looping through the DOMDocument
+instance and checking for XML_DOCUMENT_TYPE_NODE children, raising an
+exception if any are found (in cases where SimpleXML is used, loading
+the XML via DOMDocument first, and then passing the object to
+simplexml_import_dom). 
+
+The following components were patched:
+
+ - Zend_Dom
+ - Zend_Feed
+ - Zend_Soap
+ - Zend_XmlRpc
+
+Thanks goes to Pádraic Brady for identifying and patching these vectors.
 
 SECURITY NOTICE FOR 1.11.12
 ---------------------------
