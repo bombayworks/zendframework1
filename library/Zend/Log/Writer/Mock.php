@@ -17,7 +17,7 @@
  * @subpackage Writer
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Mock.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id: Mock.php 24449 2011-09-05 15:23:32Z matthew $
  */
 
 /** Zend_Log_Writer_Abstract */
@@ -29,7 +29,7 @@
  * @subpackage Writer
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Mock.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id: Mock.php 24449 2011-09-05 15:23:32Z matthew $
  */
 class Zend_Log_Writer_Mock extends Zend_Log_Writer_Abstract
 {

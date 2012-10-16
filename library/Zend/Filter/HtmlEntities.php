@@ -16,7 +16,7 @@
  * @package    Zend_Filter
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: HtmlEntities.php 24011 2011-05-04 18:56:38Z matthew $
+ * @version    $Id: HtmlEntities.php 24449 2011-09-05 15:23:32Z matthew $
  */
 
 /**

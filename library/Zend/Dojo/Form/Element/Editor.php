@@ -17,7 +17,7 @@
  * @subpackage Form_Element
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Editor.php 23921 2011-05-02 19:11:31Z matthew $
+ * @version    $Id: Editor.php 24449 2011-09-05 15:23:32Z matthew $
  */
 
 /** Zend_Dojo_Form_Element_Dijit */

@@ -30,7 +30,7 @@
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Image.php 23871 2011-04-23 22:40:16Z ramon $
+ * @version    $Id: Image.php 24449 2011-09-05 15:23:32Z matthew $
  */
 class Zend_Form_Element_Image extends Zend_Form_Element_Xhtml
 {

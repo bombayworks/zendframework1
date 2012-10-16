@@ -30,7 +30,7 @@
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Submit.php 23871 2011-04-23 22:40:16Z ramon $
+ * @version    $Id: Submit.php 24449 2011-09-05 15:23:32Z matthew $
  */
 class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
 {
@@ -75,10 +75,10 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
 
         if (null === $value) {
             $value = $this->getName();
-        }
 
-        if (null !== ($translator = $this->getTranslator())) {
-            return $translator->translate($value);
+            if (null !== ($translator = $this->getTranslator())) {
+                return $translator->translate($value);
+            }
         }
 
         return $value;

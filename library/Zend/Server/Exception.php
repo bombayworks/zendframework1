@@ -28,7 +28,7 @@
  *
  * @package Zend_Server
  * @subpackage Reflection
- * @version $Id: Exception.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version $Id: Exception.php 24449 2011-09-05 15:23:32Z matthew $
  */
 class Zend_Server_Exception extends Zend_Exception
 {

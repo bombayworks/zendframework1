@@ -16,7 +16,7 @@
  * @package    Zend_Log
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Log.php 23783 2011-03-01 21:47:35Z intiilapa $
+ * @version    $Id: Log.php 24449 2011-09-05 15:23:32Z matthew $
  */
 
 /**
@@ -24,7 +24,7 @@
  * @package    Zend_Log
  * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Log.php 23783 2011-03-01 21:47:35Z intiilapa $
+ * @version    $Id: Log.php 24449 2011-09-05 15:23:32Z matthew $
  */
 class Zend_Log
 {
