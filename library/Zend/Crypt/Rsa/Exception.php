@@ -13,33 +13,24 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Service_ShortUrl
+ * @package    Zend_Crypt
+ * @subpackage Math
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: $
+ * @version    $Id: Exception.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
 /**
+ * @see Zend_Crypt_Exception
+ */
+// require_once 'Zend/Crypt/Exception.php';
+
+/**
  * @category   Zend
- * @package    Zend_Service_ShortUrl
+ * @package    Zend_Crypt
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Zend_Service_ShortUrl_Shortener
+class Zend_Crypt_Rsa_Exception extends Zend_Crypt_Exception
 {
-    /**
-     * This function shortens long url
-     * 
-     * @param  string $url URL to Shorten
-     * @return string Shortened Url
-     */
-    public function shorten($shortenedUrl);
-    
-    /**
-     * Reveals target for short URL
-     *
-     * @param  string $shortenedUrl URL to reveal target of
-     * @return string Unshortened Url
-     */
-    public function unshorten($shortenedUrl);
 }
