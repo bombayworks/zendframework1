@@ -2,8 +2,27 @@ Welcome to the Zend Framework 1.11 Release!
 
 RELEASE INFORMATION
 ---------------
-Zend Framework 1.11.11 Release ([INSERT REV NUM HERE]).
+Zend Framework 1.11.12 Release ([INSERT REV NUM HERE]).
 Released on <Month> <Day>, <Year>.
+
+SECURITY NOTICE FOR 1.11.12
+---------------------------
+
+This release includes patches to each of the Request and Response
+objects within Zend_XmlRpc. These objects were found to be vulnerable to
+XML eXternal Entity Injection attacks due to insecure usage of the
+SimpleXMLElement class (SimpleXML PHP extension).  External entities
+could be specified by adding a specific DOCTYPE element to XML-RPC
+requests; exploiting this vulnerability could coerce opening arbitrary
+files and/or TCP connections.
+
+The patch in 1.11.12 ensures libxml_disable_entity_loader() is called
+before any SimpleXML calls are executed, thus removing the
+vulnerability.
+
+Thanks goes to Johannes Greil and Kestutis Gudinavicius of SEC-Consult
+for reporting the vulnerability and working with us to provide a working
+solution.
 
 SECURITY NOTICE FOR 1.11.6
 --------------------------
