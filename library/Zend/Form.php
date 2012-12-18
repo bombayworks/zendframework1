@@ -28,7 +28,7 @@
  * @package    Zend_Form
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Form.php 24848 2012-05-31 19:28:48Z rob $
+ * @version    $Id: Form.php 25117 2012-11-08 19:28:39Z rob $
  */
 class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 {
@@ -1025,19 +1025,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 throw new Zend_Form_Exception('Elements specified by string must have an accompanying name');
             }
 
-            if (is_array($this->_elementDecorators)) {
-                if (null === $options) {
-                    $options = array('decorators' => $this->_elementDecorators);
-                } elseif ($options instanceof Zend_Config) {
-                    $options = $options->toArray();
-                }
-                if (is_array($options)
-                    && !array_key_exists('decorators', $options)
-                ) {
-                    $options['decorators'] = $this->_elementDecorators;
-                }
-            }
-
             $this->_elements[$name] = $this->createElement($element, $name, $options);
         } elseif ($element instanceof Zend_Form_Element) {
             $prefixPaths              = array();
@@ -1101,11 +1088,21 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 
         if ((null === $options) || !is_array($options)) {
             $options = array('prefixPath' => $prefixPaths);
+
+            if (is_array($this->_elementDecorators)) {
+                $options['decorators'] = $this->_elementDecorators;
+            }
         } elseif (is_array($options)) {
             if (array_key_exists('prefixPath', $options)) {
                 $options['prefixPath'] = array_merge($prefixPaths, $options['prefixPath']);
             } else {
                 $options['prefixPath'] = $prefixPaths;
+            }
+
+            if (is_array($this->_elementDecorators)
+                && !array_key_exists('decorators', $options)
+            ) {
+                $options['decorators'] = $this->_elementDecorators;
             }
         }
 

@@ -16,7 +16,7 @@
  * @package    Zend_Feed_Reader
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Reader.php 25033 2012-08-17 19:50:08Z matthew $
+ * @version    $Id: Reader.php 25103 2012-11-07 20:29:29Z rob $
  */
 
 /**
@@ -240,7 +240,7 @@ class Zend_Feed_Reader
                     $etag = $cache->load($cacheId.'_etag');
                 }
                 if ($lastModified === null) {
-                    $lastModified = $cache->load($cacheId.'_lastmodified');;
+                    $lastModified = $cache->load($cacheId.'_lastmodified');
                 }
                 if ($etag) {
                     $client->setHeaders('If-None-Match', $etag);

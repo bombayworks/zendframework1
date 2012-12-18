@@ -17,7 +17,7 @@
  * @subpackage Helper
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Sitemap.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id: Sitemap.php 25143 2012-11-20 20:21:57Z rob $
  */
 
 /**
@@ -269,15 +269,8 @@ class Zend_View_Helper_Navigation_Sitemap
             $enc = $this->view->getEncoding();
         }
 
-        // TODO: remove check when minimum PHP version is >= 5.2.3
-        if (version_compare(PHP_VERSION, '5.2.3', '>=')) {
-            // do not encode existing HTML entities
-            return htmlspecialchars($string, ENT_QUOTES, $enc, false);
-        } else {
-            $string = preg_replace('/&(?!(?:#\d++|[a-z]++);)/ui', '&amp;', $string);
-            $string = str_replace(array('<', '>', '\'', '"'), array('&lt;', '&gt;', '&#39;', '&quot;'), $string);
-            return $string;
-        }
+        // do not encode existing HTML entities
+        return htmlspecialchars($string, ENT_QUOTES, $enc, false);
     }
 
     // Public methods:

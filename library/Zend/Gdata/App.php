@@ -18,7 +18,7 @@
  * @subpackage App
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: App.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id: App.php 25063 2012-11-03 14:06:07Z rob $
  */
 
 /**
@@ -1060,6 +1060,9 @@ class Zend_Gdata_App
                      break;
                  } catch (Zend_Exception $e) {
                      // package wasn't here- continue searching
+                 } catch (ErrorException $e) {
+                     // package wasn't here- continue searching
+                     // @see ZF-7013 and ZF-11959
                  }
             }
             if ($foundClassName != null) {

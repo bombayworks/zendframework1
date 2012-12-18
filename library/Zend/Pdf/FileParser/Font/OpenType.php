@@ -17,7 +17,7 @@
  * @subpackage FileParser
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: OpenType.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id: OpenType.php 25137 2012-11-16 17:07:52Z rob $
  */
 
 /** Zend_Pdf_FileParser_Font */
@@ -582,12 +582,24 @@ abstract class Zend_Pdf_FileParser_Font_OpenType extends Zend_Pdf_FileParser_Fon
              * outlines from fonts yet, so this means no embed.
              */
             $this->isEmbeddable = false;
-        } else if ($this->isBitSet(1, $embeddingFlags)) {
-            /* Restricted license embedding. We currently don't have any way to
-             * enforce this, so interpret this as no embed. This may be revised
-             * in the future...
-             */
-            $this->isEmbeddable = false;
+        } elseif ($this->isBitSet(2, $embeddingFlags)
+                || $this->isBitSet(3, $embeddingFlags)
+                || $this->isBitSet(4)
+            ) {
+                /* One of:
+                 *     Restricted License embedding (0x0002)
+                 *     Preview & Print embedding (0x0004)
+                 *     Editable embedding (0x0008)
+                 * is set.
+                 */
+                $this->isEmbeddable = true;
+        } elseif ($this->isBitSet(1, $embeddingFlags)) {
+                /* Restricted license embedding & no other embedding is set.
+                 * We currently don't have any way to
+                 * enforce this, so interpret this as no embed. This may be revised
+                 * in the future...
+                 */
+                $this->isEmbeddable = false;
         } else {
             /* The remainder of the bit settings grant us permission to embed
              * the font. There may be additional usage rights granted or denied
