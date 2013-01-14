@@ -23,6 +23,7 @@
     "config": {
         "bin-dir": "bin"
     },
+    "bin": ["bin/zf.sh", "bin/zf.php"],
     "extra": {
         "branch-alias": {
             "dev-trunk": "1.12.x-dev",
