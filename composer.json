@@ -18,7 +18,8 @@
         }
     },
     "include-path": [
-        "library/"
+        "library/",
+        "extras/library/"
     ],
     "config": {
         "bin-dir": "bin"
